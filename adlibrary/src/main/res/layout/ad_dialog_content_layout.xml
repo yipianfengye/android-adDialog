@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fpi="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ad_root_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:id="@+id/viewpager_instruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.flyco.pageindicator.indicator.FlycoPageIndicaor
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            fpi:fpi_cornerRadius="5dp"
+            fpi:fpi_gap="8dp"
+            fpi:fpi_height="8dp"
+            fpi:fpi_selectColor="#ffffff"
+            fpi:fpi_strokeColor="#50ffffff"
+            fpi:fpi_strokeWidth="0dp"
+            fpi:fpi_unselectColor="#50ffffff"
+            fpi:fpi_width="8dp" />
+    </FrameLayout>
+</RelativeLayout>
