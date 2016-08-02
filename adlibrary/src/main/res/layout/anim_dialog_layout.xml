@@ -28,7 +28,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="22dp"
             android:padding="10dp"
-            android:src="@drawable/ic_cancel_popup" />
+            android:src="@mipmap/ic_cancel_popup" />
 
     </RelativeLayout>
 

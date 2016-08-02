@@ -1,7 +1,6 @@
 package com.uuch.adlibrary;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -14,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.flyco.pageindicator.indicator.FlycoPageIndicaor;
 import java.util.List;
 
@@ -25,7 +23,6 @@ import java.util.List;
 public class AdManager {
 
     private Activity context;
-
     private DisplayMetrics displayMetrics = new DisplayMetrics();
     private View contentView;
     private ViewPager viewPager;
@@ -34,10 +31,9 @@ public class AdManager {
     private AdAdapter adAdapter;
     private FlycoPageIndicaor mIndicator;
     private AnimDialogUtils animDialogUtils;
-
     List<AdInfo> advInfoListList;
-
     private boolean isShowing = false;
+
 
     public AdManager(Activity context, List<AdInfo> advInfoListList) {
         this.context = context;
@@ -68,7 +64,7 @@ public class AdManager {
         return isShowing;
     }
 
-    public void showAdDialog() {
+    public void showAdDialog(final int animType) {
 
         isShowing = true;
 
@@ -90,7 +86,7 @@ public class AdManager {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                animDialogUtils.show();
+                animDialogUtils.show(animType);
 
             }
         }, 1000);

@@ -25,12 +25,6 @@ public class DisplayUtil
     public static int densityDPI;//屏幕密度
     public static float screenWidthDip;//  dp单位
     public static float screenHightDip;//  dp单位
-    public static int statusBarHight;
-
-
-    public static final int IMAGE_TYPE_XHDPI = 2;// 分辨率为 720 * 1280 的图片
-    public static final int IMAGE_TYPE_XXHDPI = 1;// 分辨率为1080 * 1920 的图片
-    public static final float BASE_PX = 360.0f;// 基础分辨率比例
 
 
 

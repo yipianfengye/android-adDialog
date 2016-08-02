@@ -18,7 +18,7 @@ import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
 
 /**
- * 使用弹性动画，显示广告和一些自定义界面的弹窗工具类
+ * 使用弹性动画
  */
 public class AnimDialogUtils {
     private Activity context;
@@ -82,29 +82,17 @@ public class AnimDialogUtils {
         return this;
     }
 
-    public void show() {
+    public void show(int animType) {
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         androidContentView.addView(rootView, params);
-        startAnim();
+        startAnim(animType);
         isShowing = true;
-    }
-
-    public void dismiss() {
-        closeAnim(animContainer);
-    }
-
-    /**
-     * 关闭订单没有弹窗
-     */
-    public void dismissNoAnim() {
-        closeNoAnim();
     }
 
     /**
      * 开始时从上到下的动画
      */
-
-    private void startAnim() {
+    private void startAnim(int animType) {
         Spring tranSpring = springSystem.createSpring();
         tranSpring.addListener(new SimpleSpringListener() {
             @Override
@@ -119,8 +107,24 @@ public class AnimDialogUtils {
         });
         SpringConfig springConfig = SpringConfig.fromBouncinessAndSpeed(1, 1);
         tranSpring.setSpringConfig(springConfig);
-        tranSpring.setCurrentValue(DisplayUtil.screenhightPx);
-        tranSpring.setEndValue(0);
+        if (animType == AdConstant.ANIM_DOWN_TO_UP) {
+            tranSpring.setCurrentValue(DisplayUtil.screenhightPx);
+            tranSpring.setEndValue(0);
+        } else if (animType == AdConstant.ANIM_UP_TO_DOWN){
+            tranSpring.setCurrentValue(0 - DisplayUtil.screenhightPx);
+            tranSpring.setEndValue(0);
+        }
+    }
+
+    public void dismiss() {
+        closeAnim(animContainer);
+    }
+
+    /**
+     * 关闭订单没有弹窗
+     */
+    public void dismissNoAnim() {
+        closeNoAnim();
     }
 
     /**
