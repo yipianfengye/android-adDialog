@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.DisplayMetrics;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.uuch.adlibrary.utils.DisplayUtil;
 
 /**
  * Created by aaron on 16/8/2.

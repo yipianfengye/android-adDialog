@@ -1,4 +1,4 @@
-package com.uuch.adlibrary;
+package com.uuch.adlibrary.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -13,6 +13,7 @@ public class AdInfo implements Parcelable{
     private String title = null;
     private String url = null;
     private String activityImg = null;
+    private int activityImgId = -1;
 
     public String getAdId() {
         return adId;
@@ -46,6 +47,15 @@ public class AdInfo implements Parcelable{
         this.activityImg = activityImg;
     }
 
+    public int getActivityImgId() {
+        return activityImgId;
+    }
+
+    public void setActivityImgId(int activityImgId) {
+        this.activityImgId = activityImgId;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -57,6 +67,7 @@ public class AdInfo implements Parcelable{
         dest.writeString(this.title);
         dest.writeString(this.url);
         dest.writeString(this.activityImg);
+        dest.writeInt(this.activityImgId);
     }
 
     public AdInfo() {
@@ -67,6 +78,7 @@ public class AdInfo implements Parcelable{
         this.title = in.readString();
         this.url = in.readString();
         this.activityImg = in.readString();
+        this.activityImgId = in.readInt();
     }
 
     public static final Creator<AdInfo> CREATOR = new Creator<AdInfo>() {

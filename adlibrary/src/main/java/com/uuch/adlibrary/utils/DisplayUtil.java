@@ -1,4 +1,4 @@
-package com.uuch.adlibrary;
+package com.uuch.adlibrary.utils;
 
 import android.app.Activity;
 import android.content.Context;

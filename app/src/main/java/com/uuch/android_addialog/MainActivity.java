@@ -2,11 +2,16 @@ package com.uuch.android_addialog;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.uuch.adlibrary.AdConstant;
-import com.uuch.adlibrary.AdInfo;
+import com.uuch.adlibrary.bean.AdInfo;
 import com.uuch.adlibrary.AdManager;
 
 import java.util.ArrayList;
@@ -15,8 +20,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public List<AdInfo> advList = null;
+    public Spinner spinner = null;
     public Button button1 = null;
-    public Button button2 = null;
+    public EditText editText = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,29 +54,107 @@ public class MainActivity extends AppCompatActivity {
      * 初始化组件
      */
     private void initView() {
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        List<DataBean> mList = new ArrayList<>();
+        mList.add(new DataBean(-1, "请选择广告弹窗动画类型"));
+        mList.add(new DataBean(AdConstant.ANIM_DOWN_TO_UP, "从下至上弹出广告弹窗"));
+        mList.add(new DataBean(AdConstant.ANIM_UP_TO_DOWN, "从上至下弹出广告弹窗"));
+        mList.add(new DataBean(AdConstant.ANIM_LEFT_TO_RIGHT, "从左至右弹出广告弹窗"));
+        mList.add(new DataBean(AdConstant.ANIM_RIGHT_TO_LEFT, "从右至左弹出广告弹窗"));
+        mList.add(new DataBean(AdConstant.ANIM_UPLEFT_TO_CENTER, "从左上弹出广告弹窗"));
+        mList.add(new DataBean(AdConstant.ANIM_UPRIGHT_TO_CENTER, "从右上弹出广告弹窗"));
+        mList.add(new DataBean(AdConstant.ANIM_DOWNLEFT_TO_CENTER, "从左下弹出广告弹窗"));
+        mList.add(new DataBean(AdConstant.ANIM_DOWNRIGHT_TO_CENTER, "从右下弹出广告弹窗"));
+        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(mList, this);
+        spinner.setAdapter(spinnerAdapter);
+        spinner.setSelected(true);
 
-        /**
-         * 从下至上弹出广告弹窗
-         */
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                AdManager adManager = new AdManager(MainActivity.this, advList);
+
+                switch (position) {
+                    /**
+                     * 从下至上弹出广告弹窗
+                     */
+                    case 1:
+                        adManager.showAdDialog(AdConstant.ANIM_DOWN_TO_UP);
+                        break;
+                    /**
+                     * 从上至下弹出广告弹窗
+                     */
+                    case 2:
+                        adManager.showAdDialog(AdConstant.ANIM_UP_TO_DOWN);
+                        break;
+                    /**
+                     * 从左向右弹窗广告弹窗
+                     */
+                    case 3:
+                        adManager.showAdDialog(AdConstant.ANIM_LEFT_TO_RIGHT);
+                        break;
+                    /**
+                     * 从右向左弹出广告弹窗
+                     */
+                    case 4:
+                        adManager.showAdDialog(AdConstant.ANIM_RIGHT_TO_LEFT);
+                        break;
+                    /**
+                     * 从左上弹出广告弹窗
+                     */
+                    case 5:
+                        adManager.showAdDialog(AdConstant.ANIM_UPLEFT_TO_CENTER);
+                        break;
+                    /**
+                     * 从右上弹出广告弹窗
+                     */
+                    case 6:
+                        adManager.showAdDialog(AdConstant.ANIM_UPRIGHT_TO_CENTER);
+                        break;
+                    /**
+                     * 从左下弹窗广告弹窗
+                     */
+                    case 7:
+                        adManager.showAdDialog(AdConstant.ANIM_DOWNLEFT_TO_CENTER);
+                        break;
+                    /**
+                     * 从右下弹出广告弹窗
+                     */
+                    case 8:
+                        adManager.showAdDialog(AdConstant.ANIM_DOWNRIGHT_TO_CENTER);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        editText = (EditText) findViewById(R.id.edittext);
+        button1 = (Button) findViewById(R.id.button1);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AdManager adManager = new AdManager(MainActivity.this, advList);
-                adManager.showAdDialog(AdConstant.ANIM_DOWN_TO_UP);
-            }
-        });
+                String result = editText.getText().toString();
+                if (TextUtils.isEmpty(result)) {
+                    Toast.makeText(MainActivity.this, "请输入弹出动画的角度!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-        /**
-         * 从上至下弹出广告弹窗
-         */
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AdManager adManager = new AdManager(MainActivity.this, advList);
-                adManager.showAdDialog(AdConstant.ANIM_UP_TO_DOWN);
+                adManager.setOnImageClickListener(new AdManager.OnImageClickListener() {
+                    @Override
+                    public void onImageClick(View view, AdInfo advInfo) {
+                        Toast.makeText(MainActivity.this, "您点击了ViewPagerItem...", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                adManager.showAdDialog(Integer.parseInt(result));
             }
         });
     }
+
 }
