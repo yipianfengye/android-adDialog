@@ -54,6 +54,8 @@ public class AdManager {
     private double bounciness = AdConstant.BOUNCINESS;
     // 弹性动画速度参数
     private double speed = AdConstant.SPEED;
+    // viewPager滑动动画效果
+    private ViewPager.PageTransformer pageTransformer = null;
 
     private OnImageClickListener onImageClickListener = null;
 
@@ -88,6 +90,10 @@ public class AdManager {
 
         adAdapter = new AdAdapter();
         viewPager.setAdapter(adAdapter);
+
+        if (pageTransformer != null) {
+            viewPager.setPageTransformer(true, pageTransformer);
+        }
 
         mIndicator.setViewPager(viewPager);
         isShowIndicator();
@@ -287,6 +293,16 @@ public class AdManager {
      */
     public AdManager setSpeed(double speed) {
         this.speed = speed;
+
+        return this;
+    }
+
+    /**
+     * 设置ViewPager滑动动画效果
+     * @param pageTransformer
+     */
+    public AdManager setPageTransformer(ViewPager.PageTransformer pageTransformer) {
+        this.pageTransformer = pageTransformer;
 
         return this;
     }

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.uuch.adlibrary.AdConstant;
 import com.uuch.adlibrary.bean.AdInfo;
 import com.uuch.adlibrary.AdManager;
+import com.uuch.adlibrary.transformer.DepthPageTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button2 = null;
     private Button button3 = null;
     private Button button4 = null;
+    private Button button5 = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,6 +212,23 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setBounciness(15)
                 .setDialogCloseable(true)
+                .showAdDialog(AdConstant.ANIM_UP_TO_DOWN);
+            }
+        });
+
+        button5 = (Button) findViewById(R.id.button5);
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AdManager adManager = new AdManager(MainActivity.this, advList);
+
+                adManager.setOnImageClickListener(new AdManager.OnImageClickListener() {
+                    @Override
+                    public void onImageClick(View view, AdInfo advInfo) {
+                        Toast.makeText(MainActivity.this, "您点击了ViewPagerItem...", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setPageTransformer(new DepthPageTransformer())
                 .showAdDialog(AdConstant.ANIM_UP_TO_DOWN);
             }
         });

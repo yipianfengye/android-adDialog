@@ -97,5 +97,16 @@
             android:text="自定义设置弹性动画参数"
             />
 
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/button4"
+            android:text="自定义设置ViewPager的滑动动画"
+            />
+
     </RelativeLayout>
 </ScrollView>

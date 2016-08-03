@@ -94,4 +94,6 @@ public class AdConstant {
      * 弹性动画速度参数
      */
     public static final double SPEED = 2;
+
+
 }
