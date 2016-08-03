@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         initData();
 
         initView();
+        initData();
     }
 
     /**
@@ -74,6 +75,21 @@ public class MainActivity extends AppCompatActivity {
         SpinnerAdapter spinnerAdapter = new SpinnerAdapter(mList, this);
         spinner.setAdapter(spinnerAdapter);
         spinner.setSelected(true);
+
+
+        editText = (EditText) findViewById(R.id.edittext);
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
+        button5 = (Button) findViewById(R.id.button5);
+
+    }
+
+    /**
+     * 初始化事件监听
+     */
+    private void initListener() {
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -140,8 +156,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        editText = (EditText) findViewById(R.id.edittext);
-        button1 = (Button) findViewById(R.id.button1);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button2 = (Button) findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,7 +193,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button3 = (Button) findViewById(R.id.button3);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -198,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button4 = (Button) findViewById(R.id.button4);
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,7 +227,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button5 = (Button) findViewById(R.id.button5);
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
