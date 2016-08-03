@@ -1,4 +1,4 @@
-package com.uuch.adlibrary;
+package com.uuch.adlibrary.anim;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -10,6 +10,8 @@ import com.facebook.rebound.SimpleSpringListener;
 import com.facebook.rebound.Spring;
 import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
+import com.uuch.adlibrary.AdConstant;
+import com.uuch.adlibrary.AnimDialogUtils;
 import com.uuch.adlibrary.utils.DisplayUtil;
 
 /**
@@ -40,7 +42,8 @@ public class AnimSpring {
      * @param animType
      * @param animContainer
      */
-    public void startAnim(final int animType, final RelativeLayout animContainer) {
+    public void startAnim(final int animType, final RelativeLayout animContainer, double bounciness, double speed) {
+        springConfig = SpringConfig.fromBouncinessAndSpeed(bounciness, speed);
         // 常量类型动画效果
         if (AdConstant.isConstantAnim(animType)) {
             startConstantAnim(animType, animContainer);

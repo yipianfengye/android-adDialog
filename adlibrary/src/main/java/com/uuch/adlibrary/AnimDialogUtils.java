@@ -10,6 +10,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.uuch.adlibrary.anim.AnimSpring;
+
 /**
  * 使用弹性动画
  */
@@ -30,7 +32,7 @@ public class AnimDialogUtils {
     // 弹窗是否可关闭
     private boolean isDialogCloseable = true;
     // 弹窗关闭点击事件
-    private View.OnClickListener onClickListener = null;
+    private View.OnClickListener onCloseClickListener = null;
     // 设置弹窗背景颜色
     private int backViewColor = Color.parseColor("#bf000000");
 
@@ -69,7 +71,7 @@ public class AnimDialogUtils {
      * 开始执行弹窗的展示动画
      * @param animType
      */
-    public void show(int animType) {
+    public void show(int animType, double bounciness, double speed) {
         // 判断是否设置背景透明
         if (isAnimBackViewTransparent) {
             backViewColor = Color.TRANSPARENT;
@@ -83,8 +85,8 @@ public class AnimDialogUtils {
             ivClose.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (onClickListener != null) {
-                        onClickListener.onClick(view);
+                    if (onCloseClickListener != null) {
+                        onCloseClickListener.onClick(view);
                     }
                     dismiss(AdConstant.ANIM_STOP_TRANSPARENT);
                 }
@@ -94,7 +96,7 @@ public class AnimDialogUtils {
         }
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         androidContentView.addView(rootView, params);
-        AnimSpring.getInstance().startAnim(animType, animContainer);
+        AnimSpring.getInstance().startAnim(animType, animContainer, bounciness, speed);
         isShowing = true;
     }
 
@@ -104,13 +106,6 @@ public class AnimDialogUtils {
     public void dismiss(int animType) {
         AnimSpring.getInstance().stopAnim(animType, this);
     }
-
-
-
-    public interface OnAnimEndListener {
-        public void onAnimEndListener();
-    }
-
 
 
     /**
@@ -136,14 +131,8 @@ public class AnimDialogUtils {
         return this;
     }
 
-    /**
-     * 设置弹窗关闭按钮是否可见
-     * @param dialogCloseable
-     * @return
-     */
-    public AnimDialogUtils setDialogCloseable(boolean dialogCloseable, View.OnClickListener onClickListener) {
-        isDialogCloseable = dialogCloseable;
-        this.onClickListener = onClickListener;
+    public AnimDialogUtils setOnCloseClickListener(View.OnClickListener onCloseClickListener) {
+        this.onCloseClickListener = onCloseClickListener;
 
         return this;
     }
@@ -158,9 +147,6 @@ public class AnimDialogUtils {
 
         return this;
     }
-
-
-
 
     // ################### get方法 ####################
 

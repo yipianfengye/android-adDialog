@@ -42,6 +42,19 @@ public class AdManager {
      */
     private float widthPerHeight = 0.75f;
 
+    // 弹窗背景是否透明
+    private boolean isAnimBackViewTransparent = false;
+    // 弹窗是否可关闭
+    private boolean isDialogCloseable = true;
+    // 弹窗关闭点击事件
+    private View.OnClickListener onCloseClickListener = null;
+    // 设置弹窗背景颜色
+    private int backViewColor = Color.parseColor("#bf000000");
+    // 弹性动画弹性参数
+    private double bounciness = AdConstant.BOUNCINESS;
+    // 弹性动画速度参数
+    private double speed = AdConstant.SPEED;
+
     private OnImageClickListener onImageClickListener = null;
 
 
@@ -80,9 +93,10 @@ public class AdManager {
         isShowIndicator();
 
         animDialogUtils = AnimDialogUtils.getInstance(context)
-                .setAnimBackViewTransparent(false)
-                .setDialogCloseable(true)
-                .setDialogBackViewColor(Color.parseColor("#AA333333"))
+                .setAnimBackViewTransparent(isAnimBackViewTransparent)
+                .setDialogCloseable(isDialogCloseable)
+                .setDialogBackViewColor(backViewColor)
+                .setOnCloseClickListener(onCloseClickListener)
                 .initView(contentView);
         setRootContainerHeight();
 
@@ -90,7 +104,7 @@ public class AdManager {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                animDialogUtils.show(animType);
+                animDialogUtils.show(animType, bounciness, speed);
             }
         }, 1000);
     }
@@ -167,6 +181,9 @@ public class AdManager {
 
     // ######################## 点击事件处理操作类 ########################
 
+    /**
+     * ViewPager每一项的单击事件
+     */
     public interface OnImageClickListener {
 
         public void onImageClick(View view, AdInfo advInfo);
@@ -175,19 +192,102 @@ public class AdManager {
 
     // ######################## get set方法 #########################
 
-    public AnimDialogUtils getAnimDialogUtils() {
-        return animDialogUtils;
-    }
-
-    public void setPadding(int padding) {
+    /**
+     * 设置弹窗距离屏幕左右两侧的距离
+     * @param padding
+     * @return
+     */
+    public AdManager setPadding(int padding) {
         this.padding = padding;
+
+        return this;
     }
 
-    public void setWidthPerHeight(float widthPerHeight) {
+    /**
+     * 设置弹窗宽高比
+     * @param widthPerHeight
+     * @return
+     */
+    public AdManager setWidthPerHeight(float widthPerHeight) {
         this.widthPerHeight = widthPerHeight;
+
+        return this;
     }
 
-    public void setOnImageClickListener(OnImageClickListener onImageClickListener) {
+    /**
+     * 设置ViewPager Item点击事件
+     * @param onImageClickListener
+     * @return
+     */
+    public AdManager setOnImageClickListener(OnImageClickListener onImageClickListener) {
         this.onImageClickListener = onImageClickListener;
+
+        return this;
+    }
+
+    /**
+     * 设置背景是否透明
+     * @param animBackViewTransparent
+     * @return
+     */
+    public AdManager setAnimBackViewTransparent(boolean animBackViewTransparent) {
+        isAnimBackViewTransparent = animBackViewTransparent;
+
+        return this;
+    }
+
+    /**
+     * 设置弹窗关闭按钮是否可见
+     * @param dialogCloseable
+     * @return
+     */
+    public AdManager setDialogCloseable(boolean dialogCloseable) {
+        isDialogCloseable = dialogCloseable;
+
+        return this;
+    }
+
+    /**
+     * 设置弹窗关闭按钮点击事件
+     * @param onCloseClickListener
+     * @return
+     */
+    public AdManager setOnCloseClickListener(View.OnClickListener onCloseClickListener) {
+        this.onCloseClickListener = onCloseClickListener;
+
+        return this;
+    }
+
+    /**
+     * 设置弹窗背景颜色
+     * @param backViewColor
+     * @return
+     */
+    public AdManager setBackViewColor(int backViewColor) {
+        this.backViewColor = backViewColor;
+
+        return this;
+    }
+
+    /**
+     * 设置弹窗弹性动画弹性参数
+     * @param bounciness
+     * @return
+     */
+    public AdManager setBounciness(double bounciness) {
+        this.bounciness = bounciness;
+
+        return this;
+    }
+
+    /**
+     * 设置弹窗弹性动画速度参数
+     * @param speed
+     * @return
+     */
+    public AdManager setSpeed(double speed) {
+        this.speed = speed;
+
+        return this;
     }
 }

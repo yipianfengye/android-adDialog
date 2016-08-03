@@ -1,5 +1,6 @@
 package com.uuch.android_addialog;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,10 +20,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public List<AdInfo> advList = null;
-    public Spinner spinner = null;
-    public Button button1 = null;
-    public EditText editText = null;
+    private List<AdInfo> advList = null;
+    private Spinner spinner = null;
+    private Button button1 = null;
+    private EditText editText = null;
+    private Button button2 = null;
+    private Button button3 = null;
+    private Button button4 = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +157,60 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 adManager.showAdDialog(Integer.parseInt(result));
+            }
+        });
+
+        button2 = (Button) findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AdManager adManager = new AdManager(MainActivity.this, advList);
+
+                adManager.setOnImageClickListener(new AdManager.OnImageClickListener() {
+                    @Override
+                    public void onImageClick(View view, AdInfo advInfo) {
+                        Toast.makeText(MainActivity.this, "您点击了ViewPagerItem...", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setPadding(100)
+                .setWidthPerHeight(1f)
+                .showAdDialog(AdConstant.ANIM_UP_TO_DOWN);
+            }
+        });
+
+        button3 = (Button) findViewById(R.id.button3);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AdManager adManager = new AdManager(MainActivity.this, advList);
+
+                adManager.setOnImageClickListener(new AdManager.OnImageClickListener() {
+                    @Override
+                    public void onImageClick(View view, AdInfo advInfo) {
+                        Toast.makeText(MainActivity.this, "您点击了ViewPagerItem...", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setBackViewColor(Color.parseColor("#AA333333"))
+                .setDialogCloseable(false)
+                .showAdDialog(AdConstant.ANIM_UP_TO_DOWN);
+            }
+        });
+
+        button4 = (Button) findViewById(R.id.button4);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AdManager adManager = new AdManager(MainActivity.this, advList);
+
+                adManager.setOnImageClickListener(new AdManager.OnImageClickListener() {
+                    @Override
+                    public void onImageClick(View view, AdInfo advInfo) {
+                        Toast.makeText(MainActivity.this, "您点击了ViewPagerItem...", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setBounciness(15)
+                .setDialogCloseable(true)
+                .showAdDialog(AdConstant.ANIM_UP_TO_DOWN);
             }
         });
     }

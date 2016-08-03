@@ -37,6 +37,7 @@
 
 
         <LinearLayout
+            android:id="@+id/circle_anim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -63,6 +64,38 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/circle_anim"
+            android:text="自定义弹窗距离两侧距离以及弹窗宽高比"
+            />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/button2"
+            android:text="自定义弹窗背景已经是否显示关闭按钮等"
+            />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/button3"
+            android:text="自定义设置弹性动画参数"
+            />
 
     </RelativeLayout>
 </ScrollView>
