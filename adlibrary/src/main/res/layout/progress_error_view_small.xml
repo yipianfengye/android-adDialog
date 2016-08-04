@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/errorStateRelativeLayout"
+    android:background="#f1f3f7"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/errorViewRelativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/errorStateImageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true" />
+
+
+        <TextView
+            android:id="@+id/errorStateContentTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/errorStateImageView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginRight="56dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:lineSpacingExtra="5.5dp"
+            android:text="@string/progressActivityErrorContentPlaceholder"
+            android:textColor="#989fa5" />
+
+        <Button
+            android:id="@+id/errorStateButton"
+            android:layout_width="match_parent"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_height="44dp"
+            android:layout_below="@+id/errorStateContentTextView"
+            android:layout_centerHorizontal="true"
+            android:text="@string/progressActivityErrorButton" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

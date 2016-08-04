@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loadingStateRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:background="#f1f3f7">
+
+
+    <com.uuch.adlibrary.view.MetaballView
+        android:id="@+id/loadingStateProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" />
+
+    <TextView
+        android:id="@+id/loading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loadingStateProgressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:text="加载中..."
+        android:textColor="#434a54"
+        android:textSize="16dp" />
+
+</RelativeLayout>

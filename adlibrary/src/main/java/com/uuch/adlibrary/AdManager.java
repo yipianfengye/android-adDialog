@@ -2,16 +2,25 @@ package com.uuch.adlibrary;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.drawable.Animatable;
+import android.net.Uri;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.controller.ControllerListener;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.image.ImageInfo;
 import com.flyco.pageindicator.indicator.FlycoPageIndicaor;
 import com.uuch.adlibrary.bean.AdInfo;
 import com.uuch.adlibrary.utils.DisplayUtil;
@@ -166,20 +175,54 @@ public class AdManager {
         public Object instantiateItem(ViewGroup container, int position) {
             AdInfo advInfo = advInfoListList.get(position);
 
-            // SimpleDraweeView simpleDraweeView = new SimpleDraweeView(context);
-            ImageView imageView = new ImageView(context);
+            View rootView = context.getLayoutInflater().inflate(R.layout.viewpager_item, null);
+            final ViewGroup errorView = (ViewGroup) rootView.findViewById(R.id.error_view);
+            final ViewGroup loadingView = (ViewGroup) rootView.findViewById(R.id.loading_view);
+            final SimpleDraweeView simpleDraweeView = (SimpleDraweeView) rootView.findViewById(R.id.simpleDraweeView);
             ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            container.addView(imageView, params);
-            imageView.setTag(advInfo);
-            imageView.setOnClickListener(imageOnClickListener);
+            container.addView(rootView, params);
+            simpleDraweeView.setTag(advInfo);
+            simpleDraweeView.setOnClickListener(imageOnClickListener);
 
 
-            /*Uri uri = Uri.parse(advInfo.getActivityImg());
-            simpleDraweeView.setImageURI(uri);*/
-            imageView.setBackgroundResource(R.drawable.adrawable);
+            ControllerListener controllerListener = new BaseControllerListener<ImageInfo>() {
+                @Override
+                public void onFinalImageSet(
+                        String id,
+                        @Nullable ImageInfo imageInfo,
+                        @Nullable Animatable anim) {
+                    if (imageInfo == null) {
+                        return;
+                    }
+                    Log.i("##########", "onFinalImageSet()");
+                    errorView.setVisibility(View.GONE);
+                    loadingView.setVisibility(View.GONE);
+                    simpleDraweeView.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onIntermediateImageSet(String id, @Nullable ImageInfo imageInfo) {
+                    Log.i("##########", "onIntermediateImageSet()");
+                }
+
+                @Override
+                public void onFailure(String id, Throwable throwable) {
+                    Log.i("#############", "onFilure()");
+                    errorView.setVisibility(View.VISIBLE);
+                    loadingView.setVisibility(View.GONE);
+                    simpleDraweeView.setVisibility(View.GONE);
+                }
+            };
+
+            Uri uri = Uri.parse(advInfo.getActivityImg());
+            DraweeController controller = Fresco.newDraweeControllerBuilder()
+                    .setControllerListener(controllerListener)
+                    .setUri(uri)
+                    .build();
+            simpleDraweeView.setController(controller);
 
 
-            return imageView;
+            return rootView;
         }
     }
 

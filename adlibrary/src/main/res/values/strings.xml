@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ad Library</string>
+
+    <string name="progressActivityErrorButton">重新加载</string>
+    <string name="progressActivityEmptyTitlePlaceholder">未加载到任何内容!</string>
+    <string name="progressActivityEmptyContentPlaceholder">We couldn\'t find anything. Tap the button to take your first image</string>
+    <string name="progressActivityErrorTitlePlaceholder">No Connection</string>
+    <string name="progressActivityErrorContentPlaceholder">网络不给力哦，加载失败</string>
 </resources>

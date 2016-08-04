@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.uuch.adlibrary.AdConstant;
 import com.uuch.adlibrary.bean.AdInfo;
 import com.uuch.adlibrary.AdManager;
-import com.uuch.adlibrary.transformer.DepthPageTransformer;
+import com.uuch.adlibrary.transformer.ZoomOutPageTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         initData();
 
         initView();
-        initData();
+        initListener();
     }
 
     /**
@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "您点击了ViewPagerItem...", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setPageTransformer(new DepthPageTransformer())
+                .setPageTransformer(new ZoomOutPageTransformer())
                 .showAdDialog(AdConstant.ANIM_UP_TO_DOWN);
             }
         });

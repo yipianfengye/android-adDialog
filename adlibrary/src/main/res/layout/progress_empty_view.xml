@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/emptyStateRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/emptyViewRelativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/emptyStateImageView"
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:layout_centerHorizontal="true"
+            tools:background="#000000" />
+
+        <TextView
+            android:id="@+id/emptyStateTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emptyStateImageView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="20dp"
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:text="@string/progressActivityEmptyTitlePlaceholder" />
+
+        <TextView
+            android:id="@+id/emptyStateContentTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emptyStateTitleTextView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginRight="56dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:lineSpacingExtra="5.5dp"
+            android:text="@string/progressActivityEmptyContentPlaceholder" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

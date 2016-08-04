@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="ProgressLayout">
+        <attr name="progressLoadingStateBackgroundColor" format="color" />
+        <attr name="progressEmptyStateBackgroundColor" format="color" />
+        <attr name="progressErrorStateBackgroundColor" format="color" />
+    </declare-styleable>
+</resources>
