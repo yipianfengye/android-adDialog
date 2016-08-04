@@ -27,5 +27,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
     testCompile 'junit:junit:4.12'
-    compile project(':adlibrary')
+    // compile project(':adlibrary')
+    compile 'cn.yipianfengye.android:ad-library:1.0'
 }

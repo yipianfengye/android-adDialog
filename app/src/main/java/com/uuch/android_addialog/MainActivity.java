@@ -20,6 +20,9 @@ import com.uuch.adlibrary.transformer.ZoomOutPageTransformer;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 测试广告活动弹窗demo
+ */
 public class MainActivity extends AppCompatActivity {
 
     private List<AdInfo> advList = null;
@@ -49,12 +52,10 @@ public class MainActivity extends AppCompatActivity {
         advList = new ArrayList<>();
         AdInfo adInfo = new AdInfo();
         adInfo.setActivityImg("http://uu-image.oss-cn-hangzhou.aliyuncs.com/160616/8409037842A6BDA500B698A99F7FE5A10C106D23.png");
-        adInfo.setAdId("1");
         advList.add(adInfo);
 
         adInfo = new AdInfo();
         adInfo.setActivityImg("http://uu-image.oss-cn-hangzhou.aliyuncs.com/160714/443619810B576C3A0287756EF7B789EC9A11DC33.png");
-        adInfo.setAdId("2");
         advList.add(adInfo);
     }
 
@@ -75,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         mList.add(new DataBean(AdConstant.ANIM_DOWNRIGHT_TO_CENTER, "从右下弹出广告弹窗"));
         SpinnerAdapter spinnerAdapter = new SpinnerAdapter(mList, this);
         spinner.setAdapter(spinnerAdapter);
-        spinner.setSelected(true);
 
 
         editText = (EditText) findViewById(R.id.edittext);
