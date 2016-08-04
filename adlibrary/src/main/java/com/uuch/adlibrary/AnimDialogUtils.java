@@ -35,6 +35,8 @@ public class AnimDialogUtils {
     private View.OnClickListener onCloseClickListener = null;
     // 设置弹窗背景颜色
     private int backViewColor = Color.parseColor("#bf000000");
+    // 弹窗背景是否覆盖全屏幕
+    private boolean isOverScreen = true;
 
     private AnimDialogUtils(Activity context) {
         this.context = context;
@@ -51,7 +53,11 @@ public class AnimDialogUtils {
      * @return
      */
     public AnimDialogUtils initView(final View customView) {
-        androidContentView = (ViewGroup) context.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
+        if (isOverScreen) {
+            androidContentView = (ViewGroup) context.getWindow().getDecorView();
+        } else {
+            androidContentView = (ViewGroup) context.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
+        }
         rootView = LayoutInflater.from(context).inflate(R.layout.anim_dialog_layout, null);
         rootView.setTag(ANIM_DIALOG_TAG);
 
@@ -144,6 +150,16 @@ public class AnimDialogUtils {
      */
     public AnimDialogUtils setAnimBackViewTransparent(boolean animBackViewTransparent) {
         isAnimBackViewTransparent = animBackViewTransparent;
+
+        return this;
+    }
+
+    /**
+     * 设置弹窗背景是否覆盖全屏幕
+     * @param overScreen
+     */
+    public AnimDialogUtils setOverScreen(boolean overScreen) {
+        isOverScreen = overScreen;
 
         return this;
     }

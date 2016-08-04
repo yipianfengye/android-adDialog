@@ -65,6 +65,8 @@ public class AdManager {
     private double speed = AdConstant.SPEED;
     // viewPager滑动动画效果
     private ViewPager.PageTransformer pageTransformer = null;
+    // 是否覆盖全屏幕
+    private boolean isOverScreen = true;
 
     private OnImageClickListener onImageClickListener = null;
 
@@ -112,6 +114,7 @@ public class AdManager {
                 .setDialogCloseable(isDialogCloseable)
                 .setDialogBackViewColor(backViewColor)
                 .setOnCloseClickListener(onCloseClickListener)
+                .setOverScreen(isOverScreen)
                 .initView(contentView);
         setRootContainerHeight();
 
@@ -194,7 +197,6 @@ public class AdManager {
                     if (imageInfo == null) {
                         return;
                     }
-                    Log.i("##########", "onFinalImageSet()");
                     errorView.setVisibility(View.GONE);
                     loadingView.setVisibility(View.GONE);
                     simpleDraweeView.setVisibility(View.VISIBLE);
@@ -207,7 +209,6 @@ public class AdManager {
 
                 @Override
                 public void onFailure(String id, Throwable throwable) {
-                    Log.i("#############", "onFilure()");
                     errorView.setVisibility(View.VISIBLE);
                     loadingView.setVisibility(View.GONE);
                     simpleDraweeView.setVisibility(View.GONE);
@@ -346,6 +347,17 @@ public class AdManager {
      */
     public AdManager setPageTransformer(ViewPager.PageTransformer pageTransformer) {
         this.pageTransformer = pageTransformer;
+
+        return this;
+    }
+
+    /**
+     * 设置弹窗背景是否覆盖全屏幕
+     * @param overScreen
+     * @return
+     */
+    public AdManager setOverScreen(boolean overScreen) {
+        isOverScreen = overScreen;
 
         return this;
     }
