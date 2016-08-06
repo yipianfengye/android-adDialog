@@ -15,6 +15,7 @@ import com.uuch.adlibrary.AdConstant;
 import com.uuch.adlibrary.bean.AdInfo;
 import com.uuch.adlibrary.AdManager;
 import com.uuch.adlibrary.transformer.DepthPageTransformer;
+import com.uuch.adlibrary.transformer.RotateDownPageTransformer;
 import com.uuch.adlibrary.transformer.ZoomOutPageTransformer;
 
 import java.util.ArrayList;
@@ -51,11 +52,11 @@ public class MainActivity extends AppCompatActivity {
     private void initData() {
         advList = new ArrayList<>();
         AdInfo adInfo = new AdInfo();
-        adInfo.setActivityImg("http://uu-image.oss-cn-hangzhou.aliyuncs.com/160616/8409037842A6BDA500B698A99F7FE5A10C106D23.png");
+        adInfo.setActivityImg("https://raw.githubusercontent.com/yipianfengye/android-adDialog/master/images/testImage1.png");
         advList.add(adInfo);
 
         adInfo = new AdInfo();
-        adInfo.setActivityImg("http://uu-image.oss-cn-hangzhou.aliyuncs.com/160714/443619810B576C3A0287756EF7B789EC9A11DC33.png");
+        adInfo.setActivityImg("https://raw.githubusercontent.com/yipianfengye/android-adDialog/master/images/testImage2.png");
         advList.add(adInfo);
     }
 
@@ -96,7 +97,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 AdManager adManager = new AdManager(MainActivity.this, advList);
-
+                adManager.setOverScreen(true)
+                        .setPageTransformer(new DepthPageTransformer());
                 switch (position) {
                     /**
                      * 从下至上弹出广告弹窗
@@ -177,6 +179,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * 自定义设置广告活动弹窗距离屏幕两侧距离以及宽高比
+         */
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -194,6 +199,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * 自定义弹窗背景颜色,弹窗是否覆盖全屏,关闭按钮是否显示等
+         */
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -211,6 +219,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * 自定义设定弹窗弹性参数和速度参数
+         */
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -222,13 +233,15 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "您点击了ViewPagerItem...", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setBounciness(15)
-                .setDialogCloseable(true)
-                .setOverScreen(false)
+                .setBounciness(20)
+                .setSpeed(4)
                 .showAdDialog(AdConstant.ANIM_UP_TO_DOWN);
             }
         });
 
+        /**
+         * 自定义设置弹窗ViewPager滑动动画
+         */
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -240,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "您点击了ViewPagerItem...", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setPageTransformer(new DepthPageTransformer())
+                .setPageTransformer(new RotateDownPageTransformer())
                 .showAdDialog(AdConstant.ANIM_UP_TO_DOWN);
             }
         });
