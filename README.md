@@ -1,7 +1,15 @@
 # android-adDialog
 
+**更新日志**
+
+- compile 1.0 2016/08/08 完成广告活动弹窗1.0版本
+
+- compile 1.0 2016/08/08 删除demo中约束引用（否则AS2.2以下编译有问题）
+
+
+
 在介绍具体的使用说明之前，我们先看一下简单的实现效果：
-<br>![image](https://github.com/yipianfengye/android-adDialog/blob/master/images/ezgif.com-video-to-gif1.gif)
+<br><br>![image](https://github.com/yipianfengye/android-adDialog/blob/master/images/ezgif.com-video-to-gif1.gif)
 
 **使用说明**
 
